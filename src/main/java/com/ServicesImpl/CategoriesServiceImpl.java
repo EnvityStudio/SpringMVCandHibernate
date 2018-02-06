@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 import com.dao.CategoriesDao;
 import com.model.Categories;
 import com.servicesapi.CategoriesService;
-
+/**
+ * Class CategoriesServiceImpl implements CategoriesService
+ * @author thuan
+ *
+ */
 @Service
 public class CategoriesServiceImpl implements CategoriesService {
     @Autowired

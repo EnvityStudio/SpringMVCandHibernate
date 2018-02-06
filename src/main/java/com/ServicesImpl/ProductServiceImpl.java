@@ -9,7 +9,7 @@ import com.dao.ProductDao;
 import com.model.Product;
 import com.servicesapi.ProductService;
 /**
- * 
+ * class ProductServiceImpl implements ProductService
  * @author thuan
  *
  */

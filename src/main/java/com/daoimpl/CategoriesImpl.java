@@ -11,7 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.CategoriesDao;
 import com.model.Categories;
-
+/**
+ * 
+ * @author thuan
+ *
+ */
 @Repository
 @Transactional
 public class CategoriesImpl implements CategoriesDao {

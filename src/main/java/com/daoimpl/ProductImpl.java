@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,12 +12,21 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dao.ProductDao;
 import com.model.Product;
 
+/**
+ * ProductImpl method implements ProductDao
+ * 
+ * @author thuan
+ *
+ */
 @Repository
 @Transactional
 public class ProductImpl implements ProductDao {
 	@Autowired
 	SessionFactory session;
 
+	/**
+	 * get detail product
+	 */
 	public Product getDetailProduct(int idProduct) {
 		Product product = new Product();
 		Query query = session.getCurrentSession().createQuery("from Product where idproduct = " + idProduct);
@@ -27,7 +35,9 @@ public class ProductImpl implements ProductDao {
 	}
 
 	@SuppressWarnings("unchecked")
-
+	/**
+	 * get list product with status =0
+	 */
 	public List<Product> listProducts() {
 
 		List<Product> list = (List<Product>) new ArrayList<Product>();
@@ -38,7 +48,9 @@ public class ProductImpl implements ProductDao {
 	}
 
 	@SuppressWarnings("unchecked")
-
+	/**
+	 * get list product by category
+	 */
 	public List<Product> listProductsByCategories(int idCategory) {
 		List<Product> list = (List<Product>) new ArrayList<Product>();
 		Query query = session.getCurrentSession().createQuery("from Product where categories= :idCategory");
@@ -52,6 +64,9 @@ public class ProductImpl implements ProductDao {
 		return false;
 	}
 
+	/**
+	 * search product
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Product> searchProduct(String nameProduct, int idCategory, long minPrice, long maxPrice, int status) {
 		StringBuilder sql = new StringBuilder("from Product where ");
@@ -91,7 +106,7 @@ public class ProductImpl implements ProductDao {
 					}
 				}
 			} else {
-				sql.append(" category = " + idCategory + " and ");
+				sql.append(" categories = " + idCategory + " and ");
 
 				if (minPrice == 0) {
 					if (maxPrice == 0) {
@@ -118,7 +133,7 @@ public class ProductImpl implements ProductDao {
 							sql.append(" and status=1");
 						}
 					} else {
-						sql.append("( price between +" + minPrice + " and " + maxPrice + ")");
+						sql.append("( price between " + minPrice + " and " + maxPrice + ")");
 						if (status == 0) {
 							sql.append(" and status=0");
 						} else {
@@ -155,7 +170,7 @@ public class ProductImpl implements ProductDao {
 							sql.append(" and status=1");
 						}
 					} else {
-						sql.append("(price between +" + minPrice + " and " + maxPrice + ")");
+						sql.append("(price between " + minPrice + " and " + maxPrice + ")");
 						if (status == 0) {
 							sql.append(" and status=0");
 						} else {
@@ -164,7 +179,7 @@ public class ProductImpl implements ProductDao {
 					}
 				}
 			} else {
-				sql.append(" category = " + idCategory + " and ");
+				sql.append(" categories = " + idCategory + " and ");
 
 				if (minPrice == 0) {
 					if (maxPrice == 0) {
@@ -191,7 +206,7 @@ public class ProductImpl implements ProductDao {
 							sql.append(" and status=1");
 						}
 					} else {
-						sql.append("(price between +" + minPrice + " and " + maxPrice + ")");
+						sql.append("(price between " + minPrice + " and " + maxPrice + ")");
 						if (status == 0) {
 							sql.append(" and status=0");
 						} else {
@@ -201,32 +216,29 @@ public class ProductImpl implements ProductDao {
 				}
 			}
 		}
+		System.out.println(sql);
 		List<Product> list = (List<Product>) new ArrayList<Product>();
 		Query query = session.getCurrentSession().createQuery(sql.toString());
 		list = (ArrayList<Product>) query.list();
 		return list;
 	}
 
+	/**
+	 * create product
+	 */
 	public boolean createProduct(Product product) {
-		Transaction transaction = null;
 		try {
-			transaction = session.getCurrentSession().beginTransaction();
-			session.getCurrentSession().save(product);
-			transaction.commit();
+			session.getCurrentSession().saveOrUpdate(product);
 			return true;
 		} catch (Exception e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
 			e.getMessage();
 			return false;
-		} finally {
-			session.getCurrentSession().flush();
-			session.getCurrentSession().close();
-
 		}
 	}
 
+	/**
+	 * update product
+	 */
 	public boolean updateProduct(Product product) {
 		try {
 			session.getCurrentSession().saveOrUpdate(product);

@@ -1,5 +1,8 @@
 package com.servicesapi;
-
+/**
+ * interface ProductService 
+ * @author thuan
+ */
 import java.util.List;
 
 import com.model.Product;
