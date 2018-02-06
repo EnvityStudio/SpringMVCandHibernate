@@ -1,0 +1,12 @@
+com\controller\ProductController.class
+com\model\Categories.class
+com\daoimpl\CategoriesImpl.class
+com\daoimpl\ProductImpl.class
+com\servicesapi\ProductService.class
+com\ServicesImpl\CategoriesServiceImpl.class
+com\controller\BackEndController.class
+com\dao\CategoriesDao.class
+com\model\Product.class
+com\ServicesImpl\ProductServiceImpl.class
+com\dao\ProductDao.class
+com\servicesapi\CategoriesService.class
