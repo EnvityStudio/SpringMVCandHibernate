@@ -14,7 +14,7 @@ public interface ProductDao {
     public boolean buyProduct(Product product);
     public List<Product> listProductsByCategories(int idCategory);
     public Product getDetailProduct(int idProduct);
-    public Product searchProduct(String nameProduct,int idCategory, long minPrice,long maxPrice, int status);
+    public List<Product> searchProduct(String nameProduct,int idCategory, long minPrice,long maxPrice, int status);
     public boolean createProduct(Product product);
-   
+    public boolean updateProduct(Product product);
 }

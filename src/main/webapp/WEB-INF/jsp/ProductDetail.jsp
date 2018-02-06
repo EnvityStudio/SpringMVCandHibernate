@@ -197,9 +197,8 @@ a.view-detail{
 
 				</div>
 
-				<div style="width: 100%; padding-top: 4%;" onclick="Buyproduct()">
-					<button type="button" class="btn btn-danger"
-						style="margin-left: 65%; width: 25%;">Mua Ngay</button>
+				<div style="width: 100%; padding-top: 4%;">
+					<a class="btn btn-danger" href="/FinalExercises/product/buy?idproduct=${product.getIdProduct() }"style="margin-left: 65%; width: 25%;">Mua Ngay</a> 
 				</div>
 			</div>
 		</div>

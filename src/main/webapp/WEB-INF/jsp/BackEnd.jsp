@@ -152,7 +152,7 @@
             <tr>
                <td><label>Đã bán </label> </td>
                <td>
-                  <input type="checkbox" value="checkedsell" name="sold" style="min-width: 60px;min-height: 30px;">
+                  <input type="checkbox"  name="sold" style="min-width: 60px;min-height: 30px;">
                </td>
             </tr>
             <tr>
@@ -175,12 +175,14 @@
             </tr>
          </thead>
          <tbody>
+        <c:forEach items ="${listProduct}" var ="list">
             <tr>
-               <td><a onclick="Update_record()">Smart Tivi LG 55 inch</a></td>
+               <td><a>${list.getName()}</a></td>
                <td>LG</td>
-               <td>14000000</td>
-               <td>Lee Nguyễn</td>
+               <td>${list.getPriceConvert()}</td>
+               <td>${list.getUserName() }</td>
             </tr>
+            </c:forEach>
             <tr>
                <td></td>
                <td></td>

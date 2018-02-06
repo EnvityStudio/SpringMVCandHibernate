@@ -77,7 +77,7 @@
 								<div class="item-inner">
 									<div class="images-container">
 
-										<a href="../backend/productdetail?idproduct=${list.getIdProduct()}" title="${list.getName()}" class="product-image">
+										<a href="./productdetail?idproduct=${list.getIdProduct()}" title="${list.getName()}" class="product-image">
 											<img src="../resources/images/${list.getImage()}" alt="Nunc facilisis" />
 										</a>
 
